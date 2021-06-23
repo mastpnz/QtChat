@@ -15,8 +15,9 @@ public:
     explicit ChatClient(QObject *parent = nullptr);
 public slots:
     void connectToServer(const QHostAddress &address, quint16 port);
-    void login(const QString &userName);
+    void login(const QString &userName, const QByteArray &userPass);
     void sendMessage(const QString &text);
+    void trySendFile(const QString &filepath);
     void disconnectFromHost();
 private slots:
     void onReadyRead();

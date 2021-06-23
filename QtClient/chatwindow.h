@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QAbstractSocket>
+#include <../QtServer/qtchatuser.h>
+
 class ChatClient;
 class QStandardItemModel;
 namespace Ui { class ChatWindow; }
@@ -22,7 +24,7 @@ private:
 private slots:
     void attemptConnection();
     void connectedToServer();
-    void attemptLogin(const QString &userName);
+    void attemptLogin(const QString &userName,const QByteArray &userPass);
     void loggedIn();
     void loginFailed(const QString &reason);
     void messageReceived(const QString &sender, const QString &text);

@@ -11,11 +11,13 @@ CONFIG += debug_and_release
 SOURCES += \
     clientmain.cpp \
     chatwindow.cpp \
-    chatclient.cpp
+    chatclient.cpp \
+    ../QtServer/qtchatuser.cpp
 
 FORMS += \
     chatwindow.ui
 
 HEADERS += \
     chatwindow.h \
-    chatclient.h
+    chatclient.h \
+    ../QtServer/qtchatuser.h

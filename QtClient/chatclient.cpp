@@ -18,18 +18,30 @@ ChatClient::ChatClient(QObject *parent)
     connect(m_clientSocket, &QTcpSocket::disconnected, this, [this]()->void{m_loggedIn = false;});
 }
 
-void ChatClient::login(const QString &userName)
+void ChatClient::login(const QString &userName,const QByteArray &userPass)
 {
     if (m_clientSocket->state() == QAbstractSocket::ConnectedState) {
         QDataStream clientStream(m_clientSocket);
         QJsonObject message;
         message[QStringLiteral("type")] = QStringLiteral("login");
         message[QStringLiteral("username")] = userName;
+        message[QStringLiteral("userpass")] = QString::fromUtf8(userPass);
         clientStream << QJsonDocument(message).toJson(QJsonDocument::Compact);
     }
 }
 
 void ChatClient::sendMessage(const QString &text)
+{
+    if (text.isEmpty())
+        return;
+    QDataStream clientStream(m_clientSocket);
+    QJsonObject message;
+    message[QStringLiteral("type")] = QStringLiteral("message");
+    message[QStringLiteral("text")] = text;
+    clientStream << QJsonDocument(message).toJson();
+}
+
+void ChatClient::trySendFile(const QString &text)
 {
     if (text.isEmpty())
         return;

@@ -5,6 +5,7 @@
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QHostAddress>
+#include <QCryptographicHash>
 
 ChatWindow::ChatWindow(QWidget *parent)
     : QWidget(parent)
@@ -54,12 +55,16 @@ void ChatWindow::connectedToServer()
     if (newUsername.isEmpty()){
         return m_chatClient->disconnectFromHost();
     }
-    attemptLogin(newUsername);
+    const QString newUserPass = QInputDialog::getText(this, tr("Введите пароль"), tr("Пароль"),QLineEdit::PasswordEchoOnEdit);
+    if (newUsername.isEmpty()){
+        return m_chatClient->disconnectFromHost();
+    }
+    attemptLogin(newUsername,QCryptographicHash::hash(newUserPass.toUtf8(),QCryptographicHash::Sha512));
 }
 
-void ChatWindow::attemptLogin(const QString &userName)
+void ChatWindow::attemptLogin(const QString &userName, const QByteArray &userPass)
 {
-    m_chatClient->login(userName);
+    m_chatClient->login(userName,userPass);
 }
 
 void ChatWindow::loggedIn()

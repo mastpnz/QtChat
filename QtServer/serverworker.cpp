@@ -6,10 +6,10 @@
 
 ServerWorker::ServerWorker(QObject *parent)
     : QObject(parent)
-    , m_serverSocket(new QTcpSocket(this))
+    , m_serverSocket(new QSslSocket(this))
 {
-    connect(m_serverSocket, &QTcpSocket::readyRead, this, &ServerWorker::receiveJson);
-    connect(m_serverSocket, &QTcpSocket::disconnected, this, &ServerWorker::disconnectedFromClient);
+    connect(m_serverSocket, &QSslSocket::readyRead, this, &ServerWorker::receiveJson);
+    connect(m_serverSocket, &QSslSocket::disconnected, this, &ServerWorker::disconnectedFromClient);
     connect(m_serverSocket, QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error), this, &ServerWorker::error);
 }
 
@@ -22,7 +22,7 @@ bool ServerWorker::setSocketDescriptor(qintptr socketDescriptor)
 void ServerWorker::sendJson(const QJsonObject &json)
 {
     const QByteArray jsonData = QJsonDocument(json).toJson(QJsonDocument::Compact);
-    emit logMessage(QLatin1String("Отправка ") + userName() + QLatin1String(" - ") + QString::fromUtf8(jsonData));
+    emit logMessage(tr("Отправка ") + userName() + QLatin1String(" - ") + QString::fromUtf8(jsonData));
     QDataStream socketStream(m_serverSocket);
     socketStream.setVersion(QDataStream::Qt_5_7);
     socketStream << jsonData;
@@ -58,9 +58,9 @@ void ServerWorker::receiveJson()
                 if (jsonDoc.isObject())
                     emit jsonReceived(jsonDoc.object());
                 else
-                    emit logMessage(QLatin1String("Неверное сообщение: ") + QString::fromUtf8(jsonData));
+                    emit logMessage(tr("Неверное сообщение: ") + QString::fromUtf8(jsonData));
             } else {
-                emit logMessage(QLatin1String("Неверное сообщение: ") + QString::fromUtf8(jsonData));
+                emit logMessage(tr("Неверное сообщение: ") + QString::fromUtf8(jsonData));
             }
         } else {
             break;

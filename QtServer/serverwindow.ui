@@ -6,22 +6,46 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>716</width>
+    <height>574</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Qt Simple Chat Server</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" colspan="2">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Server Log</string>
-     </property>
-    </widget>
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Server Log</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnManageUsers">
+       <property name="text">
+        <string>Управление пользователями</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
-   <item row="1" column="0" colspan="2">
+   <item row="1" column="0">
     <widget class="QPlainTextEdit" name="logEditor">
      <property name="readOnly">
       <bool>true</bool>
@@ -29,24 +53,48 @@
     </widget>
    </item>
    <item row="2" column="0">
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>298</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>298</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="startStopButton">
+       <property name="text">
+        <string>Start Server</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
-   <item row="2" column="1">
-    <widget class="QPushButton" name="startStopButton">
-     <property name="text">
-      <string>Start Server</string>
-     </property>
-    </widget>
+   <item row="3" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLineEdit" name="commandLine"/>
+     </item>
+     <item>
+      <widget class="QCommandLinkButton" name="btnMakeCommand">
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>CommandLinkButton</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
