@@ -69,7 +69,6 @@ void ServerWindow::on_btnManageUsers_clicked()
 {
     if (m_chatServer->isListening()){
         m_chatServer->getDbUsers(&users);
-        qDebug() << "users count: " << users.count();
         dlgUserManage->refreshTable(&users);
         dlgUserManage->exec();
     }

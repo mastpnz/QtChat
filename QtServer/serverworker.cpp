@@ -6,10 +6,10 @@
 
 ServerWorker::ServerWorker(QObject *parent)
     : QObject(parent)
-    , m_serverSocket(new QSslSocket(this))
+    , m_serverSocket(new QTcpSocket(this))
 {
-    connect(m_serverSocket, &QSslSocket::readyRead, this, &ServerWorker::receiveJson);
-    connect(m_serverSocket, &QSslSocket::disconnected, this, &ServerWorker::disconnectedFromClient);
+    connect(m_serverSocket, &QTcpSocket::readyRead, this, &ServerWorker::receiveJson);
+    connect(m_serverSocket, &QTcpSocket::disconnected, this, &ServerWorker::disconnectedFromClient);
     connect(m_serverSocket, QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error), this, &ServerWorker::error);
 }
 

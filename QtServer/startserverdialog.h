@@ -1,14 +1,7 @@
 #pragma once
 
 #include <QDialog>
-struct ServerSettings {
-    quint16 port;
-    QString address;
-    QString dbname;
-    QString dbuser;
-    QString dbpass;
-};
-
+#include "chatserver.h"
 namespace Ui {
 class StartServerDialog;
 }

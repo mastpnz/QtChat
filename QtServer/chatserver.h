@@ -7,6 +7,18 @@
 #include <QSqlDatabase>
 #include "qtchatuser.h"
 
+struct ServerSettings {
+    int dbtype = 0; //0 for local, 1 for remote
+    quint16 port = 0;
+    QString address;
+    QString dbname;
+    QString dbuser;
+    QString dbpass;
+
+    bool isDbLocal() { return dbtype == 0 ? true : false;}
+    bool isDbRemote() { return dbtype == 1 ? true : false;}
+};
+
 class QThread;
 class ServerWorker;
 

@@ -13,11 +13,6 @@ StartServerDialog::StartServerDialog(ServerSettings &srvSet, QWidget *parent) :
     ui->dbanameLineEdit->setText(srvSet.dbname);
     ui->dbuserLineEdit->setText(srvSet.dbuser);
     ui->dbpasswordLineEdit->setText(srvSet.dbpass);
-//    ui->addressLineEdit->setText("109.194.141.141");
-    ui->addressLineEdit->setText("lookaw.ru");
-    ui->dbanameLineEdit->setText("dbRuscontol");
-    ui->dbuserLineEdit->setText("dbuser");
-    ui->dbpasswordLineEdit->setText("passwordfordbuser1488");
 }
 
 StartServerDialog::~StartServerDialog()

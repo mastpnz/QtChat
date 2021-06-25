@@ -2,7 +2,7 @@
 #define SERVERWORKER_H
 
 #include <QObject>
-#include <QSslSocket>
+#include <QTcpSocket>
 class QJsonObject;
 class ServerWorker : public QObject
 
@@ -25,7 +25,7 @@ public slots:
 private slots:
     void receiveJson();
 private:
-    QSslSocket *m_serverSocket;
+    QTcpSocket *m_serverSocket;
     QString m_userName;
 };
 
