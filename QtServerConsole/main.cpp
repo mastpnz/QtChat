@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
     m_chatServer = new ChatServer();
     m_chatServer->setDBSettings(&srvSet);
     m_chatServer->connectToDB();
-    if (!m_chatServer->listen(QHostAddress::Any, m_srvSettings.port)) {
+    if (!m_chatServer->listen(QHostAddress::Any, srvSet.port)) {
         std::cout << "Start server fail!" << std::endl;
     }
     return a.exec();

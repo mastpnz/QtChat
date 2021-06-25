@@ -3,7 +3,6 @@
 
 #include <QTcpServer>
 #include <QList>
-#include "startserverdialog.h"
 #include <QSqlDatabase>
 #include "qtchatuser.h"
 

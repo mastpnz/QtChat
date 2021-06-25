@@ -1,6 +1,8 @@
 QT -= gui
+QT += network
+QT += sql
 
-CONFIG += c++11 console network
+CONFIG += c++11 console
 CONFIG -= app_bundle
 
 # The following define makes your compiler emit warnings if you use
